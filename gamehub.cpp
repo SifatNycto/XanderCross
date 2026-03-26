@@ -11,8 +11,11 @@ int main()
 
     srand(time(NULL));
     secretNumber = (rand() % 100) + 1;
+    
     // NGG Game Header
     header_ngg();
+    std::cout << "Guess a number between 1 to 100";
+
     // Game Loop
     while(guess != secretNumber)
     {

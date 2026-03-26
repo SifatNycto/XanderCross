@@ -6,9 +6,9 @@
 # Logs
 *.log
 
-# VS Code
-.vscode/
-
 # Temporary files
 *.tmp
 *.cache
+
+# VS Code
+.vscode/

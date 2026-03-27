@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include <ctime>
 
 
@@ -51,11 +52,24 @@ class NumberGuessGame {
 
                 guess = 0;
                 attempts = 0;
+                std::string input;
                 // Game Loop
                 while(guess != secretNumber)
                 {
                     std::cout << "Enter your guess: ";
-                    std::cin >> guess;
+                    std::cin >> input;
+                    if (input == "q") exit(0);
+                    else if (input == "h") break;
+                    else {
+                        try {
+                            guess = stoi(input);
+                        }
+                        catch (...) {
+                            std::cout << "Invalid input! Please enter a number" << std::endl;
+                            continue;
+                        }
+                    }
+
                     attempts++;
 
                     if (guess > secretNumber)

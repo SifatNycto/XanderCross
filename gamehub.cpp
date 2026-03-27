@@ -8,11 +8,12 @@ class NumberGuessGame {
         int secretNumber;
         int guess = 0;
         int attempts = 0;
+        int minRange = 1;
+        int maxRange = 100;
 
     public:
        NumberGuessGame() {
         srand(time(NULL));
-        secretNumber = (rand() % 100) + 1;
        }
         
         void header_ngg() {
@@ -22,11 +23,28 @@ class NumberGuessGame {
             std::cout << std::endl;
         }
         void play() {
-            
+            int choice;
+            std::cout << "Choose Difficulty: ";
+            std::cout << "1. Easy\n2. Medium\n3. Hard" << std::endl;
+            std::cout << "Choice here: ";
+            std::cin >> choice;
+
+            if (choice == 1) minRange = 1, maxRange = 10;
+            else if (choice == 2) minRange = 1, maxRange = 100;
+            else if (choice == 3) minRange = 1, maxRange = 1000;
+            else {
+                std::cout << "Choice set to default" << std::endl;
+                minRange = 1, maxRange = 100;
+            }
+
+            secretNumber = rand() % (maxRange - minRange + 1) + minRange;
+
             // NGG Game Header
             header_ngg();
-            std::cout << "Guess a number between 1 to 100" << std::endl;
+            std::cout << "Guess Between " << minRange << " to " << maxRange << std::endl;
 
+            guess = 0;
+            attempts = 0;
             // Game Loop
             while(guess != secretNumber)
             {
@@ -43,7 +61,7 @@ class NumberGuessGame {
                 else
                 {
                     std::cout << "Correct! You guessed correct" << std::endl;
-                    std::cout << "Attempts: " << attempts;
+                    std::cout << "Attempts: " << attempts << std::endl;
                 }
             }
         }

@@ -26,10 +26,11 @@ int main()
         std::cout << "Please enter 'r' or 'p' or 's' here: " << std::endl;
     }
 
-    std::cout << "Your choice: " << user << std::endl;
-    std::cout << "Computer choice: " << std::endl;
     std::cout << std::endl;
-    
+    std::cout << "Your choice: " << user << std::endl;
+    std::cout << "Computer choice: " << computer << std::endl;
+    std::cout << std::endl;
+
     switch(user_choice)
     {
         case 'r':

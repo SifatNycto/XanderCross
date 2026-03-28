@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <cctype>
 #include <ctime>
 
 int main()
@@ -10,24 +11,28 @@ int main()
     do 
     {
         int rand_num = (rand() % 3) + 1;
-        std::string computer;
+        std::string computer = "";
         if (rand_num == 1) computer = "rock";
         else if (rand_num == 2) computer = "paper";
         else computer = "scissor";
 
         char user_choice;
         std::string user;
-        std::cout << "Enter your choice: " << std::endl;
-        std::cout << "1. Rock\n2. Paper\n3. Scissor" << std::endl;
-        std::cout << "Enter (r/p/s): ";
+        std::cout << std::endl << "Choose among them -> Rock || Paper || Scissor";
+        std::cout << std::endl << "    'r' is for Rock";
+        std::cout << std::endl << "    'p' is for Paper";
+        std::cout << std::endl << "    's' is for Scissor";
+        std::cout << std::endl << "    Enter your choice: ";
         std::cin >> user_choice;
 
+        user_choice = tolower(user_choice);
         if (user_choice == 'r') user = "rock";
         else if (user_choice == 'p') user = "paper";
         else if (user_choice == 's') user = "scissor";
         else {
             std::cout << "Invalid Input!" << std::endl;
-            std::cout << "Please enter 'r' or 'p' or 's' here: " << std::endl;
+            std::cout << "Please enter 'r' or 'p' or 's' " << std::endl;
+            continue;
         }
 
         std::cout << std::endl;

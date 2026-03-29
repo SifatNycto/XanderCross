@@ -24,6 +24,7 @@ class NumberGuessGame {
             std::cout << std::endl;
         }
 
+
         void play() {
             char play_again;
             do
@@ -31,31 +32,57 @@ class NumberGuessGame {
                 // NGG Game Header
                 header_ngg();
 
+                int mode;
+                std::cout << "Modes: " << std::endl;
+                std::cout << "1. Play with computer" << std::endl;
+                std::cout << "2. Play with friend" << std::endl;
+                std::cout << "Choose Mode (1/2): ";
+                std::cin >> mode;
+        
+
                 int choice;
-                std::cout << "Choose Difficulty: ";
+                std::cout << std::endl << "Choose Difficulty: ";
                 std::cout << std::endl << "1. Easy\n2. Medium\n3. Hard" << std::endl;
                 std::cout << "Choice here: ";
                 std::cin >> choice;
 
-                if (choice == 1) minRange = 1, maxRange = 10;
-                else if (choice == 2) minRange = 1, maxRange = 100;
-                else if (choice == 3) minRange = 1, maxRange = 1000;
+                int Max_attempts;
+
+                if (choice == 1) minRange = 1, maxRange = 10, Max_attempts = 5;
+                else if (choice == 2) minRange = 1, maxRange = 100, Max_attempts = 7;
+                else if (choice == 3) minRange = 1, maxRange = 1000, Max_attempts = 10;
                 else
                 {
-                    std::cout << "Choice set to default" << std::endl;
-                    minRange = 1, maxRange = 100;
+                    std::cout << "Invalid choice input!\nChoice set to default" << std::endl;
+                    minRange = 1, maxRange = 100, Max_attempts = 7;
                 }
 
-                secretNumber = rand() % (maxRange - minRange + 1) + minRange;
 
-                std::cout << "Guess Between " << minRange << " to " << maxRange << std::endl;
+                if (mode == 1)
+                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
+
+                else if (mode == 2) {
+                    while (secretNumber >=1 && secretNumber <= 1000) {
+                        std::cout << std::endl << "Player 1, Enter secter number between 1 to 1000: ";
+                        std::cin >> secretNumber;
+                    }
+
+                }
+                else {
+                    std::cout << "Invalid mode choice!\nMode set to dafault" << std::endl;
+                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
+                }
+                
+
+                std::cout << "\nGuess Between " << minRange << " to " << maxRange << std::endl;
 
                 guess = 0;
                 attempts = 0;
                 std::string input;
                 // Game Loop
-                while(guess != secretNumber)
+                while(guess != secretNumber && attempts < Max_attempts)
                 {
+                    std::cout << "\nYou have " << Max_attempts << " attempts..." << std::endl;
                     std::cout << "Enter your guess: ";
                     std::cin >> input;
                     if (input == "q") exit(0);
@@ -71,6 +98,7 @@ class NumberGuessGame {
                     }
 
                     attempts++;
+                    Max_attempts--;
 
                     if (guess > secretNumber)
                         std::cout << "Too High" << std::endl;
@@ -80,10 +108,17 @@ class NumberGuessGame {
 
                     else
                     {
-                        std::cout << "Correct! You guessed correct" << std::endl;
+                        std::cout << "Correct! You guessed correct number" << std::endl;
                         std::cout << "Attempts: " << attempts << std::endl;
+                        std::cout << "Remaining attempts: " << (Max_attempts - attempts) << std::endl;
                     }
                 }
+                //...
+                if (attempts == Max_attempts && guess != secretNumber) {
+                    std::cout << "You Lost!" << std::endl;
+                    std::cout << "Correct Number: " << secretNumber << std::endl;
+                }
+
                 std::cout << std::endl << "Play Again? (y/n): ";
                 std::cin >> play_again;
 

@@ -39,6 +39,22 @@ class NumberGuessGame {
                 std::cout << "Choose Mode (1/2): ";
                 std::cin >> mode;
         
+                
+                if (mode == 1)
+                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
+
+                else if (mode == 2)
+                {
+                    while (!(secretNumber >=1 && secretNumber <= 1000))
+                    {
+                        std::cout << std::endl << "Player 1, Enter secter number between 1 to 1000: ";
+                        std::cin >> secretNumber;
+                    }
+                }
+                else {
+                    std::cout << "Invalid mode choice!\nMode set to dafault" << std::endl;
+                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
+                }
 
                 int choice;
                 std::cout << std::endl << "Choose Difficulty: ";
@@ -58,20 +74,6 @@ class NumberGuessGame {
                 }
 
 
-                if (mode == 1)
-                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
-
-                else if (mode == 2) {
-                    while (secretNumber >=1 && secretNumber <= 1000) {
-                        std::cout << std::endl << "Player 1, Enter secter number between 1 to 1000: ";
-                        std::cin >> secretNumber;
-                    }
-
-                }
-                else {
-                    std::cout << "Invalid mode choice!\nMode set to dafault" << std::endl;
-                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
-                }
                 
 
                 std::cout << "\nGuess Between " << minRange << " to " << maxRange << std::endl;
@@ -98,7 +100,6 @@ class NumberGuessGame {
                     }
 
                     attempts++;
-                    Max_attempts--;
 
                     if (guess > secretNumber)
                         std::cout << "Too High" << std::endl;

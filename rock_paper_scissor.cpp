@@ -16,6 +16,7 @@ class RockPaperScissor {
             char play_again;
             do 
             {
+                // generating 
                 int rand_num = (rand() % 3) + 1;
 
                 if (rand_num == 1) computer = "rock";

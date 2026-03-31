@@ -32,7 +32,10 @@ class NumberGuessGame {
                 // NGG Game Header
                 header_ngg();
 
+                int choice;
+                int Max_attempts;
                 int mode;
+
                 std::cout << "Modes: " << std::endl;
                 std::cout << "1. Play with computer" << std::endl;
                 std::cout << "2. Play with friend" << std::endl;
@@ -41,40 +44,22 @@ class NumberGuessGame {
         
                 
                 if (mode == 1)
+                {
                     secretNumber = rand() % (maxRange - minRange + 1) + minRange;
-
+                    difficulty(&choice, &minRange, &maxRange, &Max_attempts);
+                }
                 else if (mode == 2)
                 {
-                    while (!(secretNumber >=1 && secretNumber <= 1000))
-                    {
-                        std::cout << std::endl << "Player 1, Enter secter number between 1 to 1000: ";
+                        difficulty(&choice, &minRange, &maxRange, &Max_attempts);
+                        std::cout << std::endl << "Player 1, Enter secter number between " << minRange << " and " << maxRange << ": ";
                         std::cin >> secretNumber;
-                    }
                 }
                 else {
                     std::cout << "Invalid mode choice!\nMode set to dafault" << std::endl;
                     secretNumber = rand() % (maxRange - minRange + 1) + minRange;
                 }
 
-                int choice;
-                std::cout << std::endl << "Choose Difficulty: ";
-                std::cout << std::endl << "1. Easy\n2. Medium\n3. Hard" << std::endl;
-                std::cout << "Choice here: ";
-                std::cin >> choice;
-
-                int Max_attempts;
-
-                if (choice == 1) minRange = 1, maxRange = 10, Max_attempts = 5;
-                else if (choice == 2) minRange = 1, maxRange = 100, Max_attempts = 7;
-                else if (choice == 3) minRange = 1, maxRange = 1000, Max_attempts = 10;
-                else
-                {
-                    std::cout << "Invalid choice input!\nChoice set to default" << std::endl;
-                    minRange = 1, maxRange = 100, Max_attempts = 7;
-                }
-
-
-                
+                //..................
 
                 std::cout << "\nGuess Between " << minRange << " to " << maxRange << std::endl;
 
@@ -126,6 +111,23 @@ class NumberGuessGame {
                 std::cout << std::endl;
 
             } while (play_again == 'y' || play_again == 'Y');
+        }
+
+        void difficulty(int *choice, int *minRange, int *maxRange, int *Max_attempts)
+        {
+            std::cout << std::endl << "Choose Difficulty: ";
+                std::cout << std::endl << "1. Easy\n2. Medium\n3. Hard" << std::endl;
+                std::cout << "Choice here: ";
+                std::cin >> *choice;
+
+                if (*choice == 1) *minRange = 1, *maxRange = 10, *Max_attempts = 5;
+                else if (*choice == 2) *minRange = 1, *maxRange = 100, *Max_attempts = 7;
+                else if (*choice == 3) *minRange = 1, *maxRange = 1000, *Max_attempts = 10;
+                else
+                {
+                    std::cout << "Invalid choice input!\nChoice set to default" << std::endl;
+                    *minRange = 1, *maxRange = 100, *Max_attempts = 7;
+                }
         }
 };
 

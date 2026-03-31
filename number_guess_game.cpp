@@ -45,8 +45,8 @@ class NumberGuessGame {
                 
                 if (mode == 1)
                 {
-                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
                     difficulty(&choice, &minRange, &maxRange, &Max_attempts);
+                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
                 }
                 else if (mode == 2)
                 {
@@ -99,6 +99,7 @@ class NumberGuessGame {
                         std::cout << "Remaining attempts: " << (Max_attempts - attempts) << std::endl;
                     }
                 }
+                
                 //...
                 if (attempts == Max_attempts && guess != secretNumber) {
                     std::cout << "You Lost!" << std::endl;

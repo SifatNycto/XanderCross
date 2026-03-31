@@ -51,8 +51,11 @@ class NumberGuessGame {
                 else if (mode == 2)
                 {
                         difficulty(&choice, &minRange, &maxRange, &Max_attempts);
-                        std::cout << std::endl << "Player 1, Enter secter number between " << minRange << " and " << maxRange << ": ";
-                        std::cin >> secretNumber;
+                        while (!(secretNumber >= minRange && secretNumber <= maxRange))
+                        {
+                            std::cout << std::endl << "Player 1, Enter secter number between " << minRange << " and " << maxRange << ": ";
+                            std::cin >> secretNumber;
+                        }
                 }
                 else {
                     std::cout << "Invalid mode choice!\nMode set to dafault" << std::endl;
@@ -69,7 +72,7 @@ class NumberGuessGame {
                 // Game Loop
                 while(guess != secretNumber && attempts < Max_attempts)
                 {
-                    std::cout << "\nYou have " << Max_attempts << " attempts..." << std::endl;
+                    std::cout << "\nYou have " << (Max_attempts - attempts) << " attempts..." << std::endl;
                     std::cout << "Enter your guess: ";
                     std::cin >> input;
                     if (input == "q") exit(0);

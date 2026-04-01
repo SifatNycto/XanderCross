@@ -57,6 +57,7 @@ class RockPaperScissor {
             } while (play_again == 'y' || play_again == 'Y');
         }
 
+        // ............
         void decide_winner() {
             switch(user_choice)
             {

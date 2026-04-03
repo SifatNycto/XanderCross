@@ -87,6 +87,7 @@ class NumberGuessGame {
                         }
                     }
 
+                    // ................
                     attempts++;
 
                     if (guess > secretNumber)

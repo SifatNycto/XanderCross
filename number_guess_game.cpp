@@ -118,7 +118,7 @@ class NumberGuessGame {
             } while (play_again == 'y' || play_again == 'Y');
         }
 
-        // ............
+        
         void difficulty(int *choice, int *minRange, int *maxRange, int *Max_attempts)
         {
             std::cout << std::endl << "Choose Difficulty: ";

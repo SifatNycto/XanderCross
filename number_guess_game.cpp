@@ -13,9 +13,9 @@ class NumberGuessGame {
         int maxRange = 100;
 
     public:
-       NumberGuessGame() {
-        srand(time(NULL));
-       }
+        NumberGuessGame() {
+            srand(time(NULL));
+        }
         
         void header_ngg() {
             std::cout << "\n+--------------------------------------+";
@@ -53,7 +53,7 @@ class NumberGuessGame {
                         difficulty(&choice, &minRange, &maxRange, &Max_attempts);
                         while (!(secretNumber >= minRange && secretNumber <= maxRange))
                         {
-                            std::cout << std::endl << "Player 1, Enter secter number between " << minRange << " and " << maxRange << ": ";
+                            std::cout << std::endl << "Player 1, Enter secrect number between " << minRange << " and " << maxRange << ": ";
                             std::cin >> secretNumber;
                         }
                 }
@@ -72,6 +72,9 @@ class NumberGuessGame {
                 // Game Loop
                 while(guess != secretNumber && attempts < Max_attempts)
                 {
+                    // calling clear screen..............
+                    clear_screen();
+                    
                     std::cout << "\nYou have " << (Max_attempts - attempts) << " attempts..." << std::endl;
                     std::cout << "Enter your guess: ";
                     std::cin >> input;
@@ -134,6 +137,16 @@ class NumberGuessGame {
                     std::cout << "Invalid choice input!\nChoice set to default" << std::endl;
                     *minRange = 1, *maxRange = 100, *Max_attempts = 7;
                 }
+        }
+
+        // for system clear
+        void clear_screen() {
+            #if defined(_WIN32) || defined(_WIN64)
+                system("cls");
+            #else
+                system("clear");
+            
+            #endif
         }
 };
 

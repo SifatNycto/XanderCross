@@ -25,6 +25,15 @@ class NumberGuessGame {
         }
 
 
+        void modeSelection(int mode) {
+            std::cout << "Modes: " << std::endl;
+            std::cout << "1. Play with computer" << std::endl;
+            std::cout << "2. Play with friend" << std::endl;
+            std::cout << "Choose Mode (1/2): ";
+            std::cin >> mode;
+
+            clear_screen();
+        }
         void play() {
             char play_again;
             do
@@ -36,12 +45,8 @@ class NumberGuessGame {
                 int Max_attempts;
                 int mode;
 
-                std::cout << "Modes: " << std::endl;
-                std::cout << "1. Play with computer" << std::endl;
-                std::cout << "2. Play with friend" << std::endl;
-                std::cout << "Choose Mode (1/2): ";
-                std::cin >> mode;
-        
+                // Mode Selection...............
+                modeSelection(mode);
                 
                 if (mode == 1)
                 {
@@ -50,15 +55,21 @@ class NumberGuessGame {
                 }
                 else if (mode == 2)
                 {
-                        difficulty(&choice, &minRange, &maxRange, &Max_attempts);
-                        while (!(secretNumber >= minRange && secretNumber <= maxRange))
-                        {
-                            std::cout << std::endl << "Player 1, Enter secrect number between " << minRange << " and " << maxRange << ": ";
-                            std::cin >> secretNumber;
-                        }
+                    difficulty(&choice, &minRange, &maxRange, &Max_attempts);
+                    while (true)
+                    {
+                        std::cout << std::endl << "Player 1, Enter secret number between " << minRange << " and " << maxRange << ": ";
+                        std::cin >> secretNumber;
+
+                        if (secretNumber >= minRange && secretNumber <= maxRange) break;
+                        else std::cout << std::endl << "Invalid Secret Number Setting !";
+                    }
+                    // calling clear screen..............
+                    clear_screen();
                 }
                 else {
-                    std::cout << "Invalid mode choice!\nMode set to dafault" << std::endl;
+                    std::cout << "Invalid mode choice!\nMode set to default" << std::endl;
+                    difficulty(&choice, &minRange, &maxRange, &Max_attempts);
                     secretNumber = rand() % (maxRange - minRange + 1) + minRange;
                 }
 
@@ -72,10 +83,7 @@ class NumberGuessGame {
                 // Game Loop
                 while(guess != secretNumber && attempts < Max_attempts)
                 {
-                    // calling clear screen..............
-                    clear_screen();
-                    
-                    std::cout << "\nYou have " << (Max_attempts - attempts) << " attempts..." << std::endl;
+                    std::cout << "\nRemaining attempts: " << (Max_attempts - attempts) << std::endl;
                     std::cout << "Enter your guess: ";
                     std::cin >> input;
                     if (input == "q") exit(0);
@@ -121,7 +129,7 @@ class NumberGuessGame {
             } while (play_again == 'y' || play_again == 'Y');
         }
 
-        
+        // difficulty setting method.........
         void difficulty(int *choice, int *minRange, int *maxRange, int *Max_attempts)
         {
             std::cout << std::endl << "Choose Difficulty: ";

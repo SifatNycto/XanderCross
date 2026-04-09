@@ -25,14 +25,15 @@ class NumberGuessGame {
         }
 
 
-        void modeSelection(int mode) {
+        int modeSelection() {
+            int Mode;
             std::cout << "Modes: " << std::endl;
             std::cout << "1. Play with computer" << std::endl;
             std::cout << "2. Play with friend" << std::endl;
             std::cout << "Choose Mode (1/2): ";
-            std::cin >> mode;
+            std::cin >> Mode;
 
-            clear_screen();
+            return Mode;
         }
         void play() {
             char play_again;
@@ -46,7 +47,7 @@ class NumberGuessGame {
                 int mode;
 
                 // Mode Selection...............
-                modeSelection(mode);
+                mode = modeSelection();
                 
                 if (mode == 1)
                 {
@@ -74,7 +75,6 @@ class NumberGuessGame {
                 }
 
                 //..................
-
                 std::cout << "\nGuess Between " << minRange << " to " << maxRange << std::endl;
 
                 guess = 0;
@@ -82,7 +82,7 @@ class NumberGuessGame {
                 std::string input;
                 // Game Loop
                 while(guess != secretNumber && attempts < Max_attempts)
-                {
+                {   
                     std::cout << "\nRemaining attempts: " << (Max_attempts - attempts) << std::endl;
                     std::cout << "Enter your guess: ";
                     std::cin >> input;
@@ -117,7 +117,7 @@ class NumberGuessGame {
                 
                 //...
                 if (attempts == Max_attempts && guess != secretNumber) {
-                    std::cout << "You Lost!" << std::endl;
+                    std::cout << "\nYou Lost!" << std::endl;
                     std::cout << "Correct Number: " << secretNumber << std::endl;
                 }
 
@@ -133,18 +133,18 @@ class NumberGuessGame {
         void difficulty(int *choice, int *minRange, int *maxRange, int *Max_attempts)
         {
             std::cout << std::endl << "Choose Difficulty: ";
-                std::cout << std::endl << "1. Easy\n2. Medium\n3. Hard" << std::endl;
-                std::cout << "Choice here: ";
-                std::cin >> *choice;
+            std::cout << std::endl << "1. Easy\n2. Medium\n3. Hard" << std::endl;
+            std::cout << "Choice here: ";
+            std::cin >> *choice;
 
-                if (*choice == 1) *minRange = 1, *maxRange = 10, *Max_attempts = 5;
-                else if (*choice == 2) *minRange = 1, *maxRange = 100, *Max_attempts = 7;
-                else if (*choice == 3) *minRange = 1, *maxRange = 1000, *Max_attempts = 10;
-                else
-                {
-                    std::cout << "Invalid choice input!\nChoice set to default" << std::endl;
-                    *minRange = 1, *maxRange = 100, *Max_attempts = 7;
-                }
+            if (*choice == 1) *minRange = 1, *maxRange = 10, *Max_attempts = 5;
+            else if (*choice == 2) *minRange = 1, *maxRange = 100, *Max_attempts = 7;
+            else if (*choice == 3) *minRange = 1, *maxRange = 1000, *Max_attempts = 10;
+            else
+            {
+                std::cout << "Invalid choice input!\nChoice set to default" << std::endl;
+                *minRange = 1, *maxRange = 100, *Max_attempts = 7;
+            }
         }
 
         // for system clear

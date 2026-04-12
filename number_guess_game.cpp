@@ -12,6 +12,15 @@ class NumberGuessGame {
         int minRange = 1;
         int maxRange = 100;
 
+        int totalGames = 0;
+        int wins = 0;
+        int losses = 0;
+
+        int playerTurn;
+        std::string player1Name;
+        std::string player2Name;
+        std::string randPlayer;
+
     public:
         NumberGuessGame() {
             srand(time(NULL));
@@ -24,7 +33,7 @@ class NumberGuessGame {
             std::cout << std::endl;
         }
 
-
+       
         int modeSelection() {
             int Mode;
             std::cout << "Modes: " << std::endl;
@@ -42,6 +51,8 @@ class NumberGuessGame {
                 // NGG Game Header
                 header_ngg();
 
+                
+
                 int choice;
                 int Max_attempts;
                 int mode;
@@ -53,13 +64,30 @@ class NumberGuessGame {
                 {
                     difficulty(&choice, &minRange, &maxRange, &Max_attempts);
                     secretNumber = rand() % (maxRange - minRange + 1) + minRange;
+
+                    std::cout << std::endl << "Enter player name: ";
+                    std::cin >> player1Name;
+                    randPlayer = player1Name;
                 }
                 else if (mode == 2)
                 {
                     difficulty(&choice, &minRange, &maxRange, &Max_attempts);
+                    std::cout << std::endl << "Enter player 1 name: ";
+                    std::cin >> player1Name;
+                    std::cout << std::endl << "Enter player 2 name: ";
+                    std::cin >> player2Name;
+
+                    playerTurn = (rand() % 2) + 1;
+                    // std::string randPlayer;
+
+                    if (playerTurn == 1)
+                        std::cout << "\nNow " << player1Name << " will set the Secret Number.", randPlayer = player2Name;
+                    else 
+                        std::cout << "\nNow " << player2Name << " will set the Secret Number.", randPlayer = player1Name;
+
                     while (true)
                     {
-                        std::cout << std::endl << "Player 1, Enter secret number between " << minRange << " and " << maxRange << ": ";
+                        std::cout << std::endl << randPlayer << ", Enter secret number between " << minRange << " and " << maxRange << ": ";
                         std::cin >> secretNumber;
 
                         if (secretNumber >= minRange && secretNumber <= maxRange) break;
@@ -72,10 +100,14 @@ class NumberGuessGame {
                     std::cout << "Invalid mode choice!\nMode set to default" << std::endl;
                     difficulty(&choice, &minRange, &maxRange, &Max_attempts);
                     secretNumber = rand() % (maxRange - minRange + 1) + minRange;
+                    
+                    std::cout << std::endl << "Enter your name: ";
+                    std::cin >> player1Name;
+                    randPlayer = player1Name;
                 }
 
                 //..................
-                std::cout << "\nGuess Between " << minRange << " to " << maxRange << std::endl;
+                std::cout << "\n" << randPlayer << ", Guess Between " << minRange << " to " << maxRange << std::endl;
 
                 guess = 0;
                 attempts = 0;
@@ -102,31 +134,45 @@ class NumberGuessGame {
                     attempts++;
 
                     if (guess > secretNumber)
-                        std::cout << "Too High" << std::endl;
+                        std::cout << "Too High " << randPlayer << std::endl;
 
                     else if (guess < secretNumber)
-                        std::cout << "Too Low" << std::endl;
+                        std::cout << "Too Low " << randPlayer << std::endl;
 
                     else
                     {
-                        std::cout << "Correct! You guessed correct number" << std::endl;
+                        std::cout << "Correct! " << randPlayer << " You guessed correct number" << std::endl;
+                        wins++;
                         std::cout << "Attempts: " << attempts << std::endl;
                         std::cout << "Remaining attempts: " << (Max_attempts - attempts) << std::endl;
+
+                        if (playerTurn == 1)
+                            std::cout << std::endl << "What s shame " << player1Name << ". \nYou failed to hide the number.";
+                        else
+                            std::cout << std::endl << "What s shame " << player2Name << ". \nYou failed to hide the number.";
                     }
                 }
                 
                 //...
-                if (attempts == Max_attempts && guess != secretNumber) {
-                    std::cout << "\nYou Lost!" << std::endl;
+                if (attempts == Max_attempts && guess != secretNumber)
+                {
+                    std::cout << "\nYou Lost " << randPlayer << " !" << std::endl;
                     std::cout << "Correct Number: " << secretNumber << std::endl;
+                    losses++;
+
+                    if (playerTurn == 1)
+                            std::cout << std::endl << "Ha Ha 😂 " << player1Name << ". Wins.";
+                    else
+                        std::cout << std::endl << "Ha Ha 😂 " << player2Name << ". Wins.";
                 }
 
-                std::cout << std::endl << "Play Again? (y/n): ";
+                std::cout << std::endl << randPlayer << ", Do You Wanna Play Again? (y/n): ";
                 std::cin >> play_again;
 
                 std::cout << std::endl;
 
             } while (play_again == 'y' || play_again == 'Y');
+            totalGames++;
         }
 
         // difficulty setting method.........

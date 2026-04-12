@@ -62,12 +62,12 @@ class NumberGuessGame {
                 
                 if (mode == 1)
                 {
-                    difficulty(&choice, &minRange, &maxRange, &Max_attempts);
-                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
-
                     std::cout << std::endl << "Enter player name: ";
                     std::cin >> player1Name;
                     randPlayer = player1Name;
+
+                    difficulty(&choice, &minRange, &maxRange, &Max_attempts);
+                    secretNumber = rand() % (maxRange - minRange + 1) + minRange;
                 }
                 else if (mode == 2)
                 {
@@ -171,8 +171,8 @@ class NumberGuessGame {
 
                 std::cout << std::endl;
 
+                totalGames++;
             } while (play_again == 'y' || play_again == 'Y');
-            totalGames++;
         }
 
         // difficulty setting method.........

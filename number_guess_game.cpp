@@ -20,6 +20,7 @@ class NumberGuessGame {
         std::string player1Name;
         std::string player2Name;
         std::string randPlayer;
+        std::string guessPlayer;
 
     public:
         NumberGuessGame() {
@@ -81,9 +82,9 @@ class NumberGuessGame {
                     // std::string randPlayer;
 
                     if (playerTurn == 1)
-                        std::cout << "\nNow " << player1Name << " will set the Secret Number.", randPlayer = player2Name;
+                        std::cout << "\nNow " << player1Name << " will set the Secret Number.", randPlayer = player1Name;
                     else 
-                        std::cout << "\nNow " << player2Name << " will set the Secret Number.", randPlayer = player1Name;
+                        std::cout << "\nNow " << player2Name << " will set the Secret Number.", randPlayer = player2Name;
 
                     while (true)
                     {
@@ -107,7 +108,16 @@ class NumberGuessGame {
                 }
 
                 //..................
-                std::cout << "\n" << randPlayer << ", Guess Between " << minRange << " to " << maxRange << std::endl;
+                if (mode == 2) {
+                    if (randPlayer == player1Name) guessPlayer = player2Name;
+                    else guessPlayer = player1Name;
+                }
+                else {
+                    guessPlayer = player1Name;
+                }
+
+
+                std::cout << "\n" << guessPlayer << ", Guess Between " << minRange << " to " << maxRange << std::endl;
 
                 guess = 0;
                 attempts = 0;
@@ -134,14 +144,14 @@ class NumberGuessGame {
                     attempts++;
 
                     if (guess > secretNumber)
-                        std::cout << "Too High " << randPlayer << std::endl;
+                        std::cout << "Too High " << guessPlayer << std::endl;
 
                     else if (guess < secretNumber)
-                        std::cout << "Too Low " << randPlayer << std::endl;
+                        std::cout << "Too Low " << guessPlayer << std::endl;
 
                     else
                     {
-                        std::cout << "Correct! " << randPlayer << " You guessed correct number" << std::endl;
+                        std::cout << "Correct! " << guessPlayer << " You guessed correct number" << std::endl;
                         wins++;
                         std::cout << "Attempts: " << attempts << std::endl;
                         std::cout << "Remaining attempts: " << (Max_attempts - attempts) << std::endl;

@@ -144,10 +144,10 @@ class NumberGuessGame {
                     attempts++;
 
                     if (guess > secretNumber)
-                        std::cout << "Too High " << guessPlayer << std::endl;
+                        std::cout << guessPlayer << "Too High " << std::endl;
 
                     else if (guess < secretNumber)
-                        std::cout << "Too Low " << guessPlayer << std::endl;
+                        std::cout << guessPlayer << "Too Low " << std::endl;
 
                     else
                     {
@@ -166,7 +166,7 @@ class NumberGuessGame {
                 //...
                 if (attempts == Max_attempts && guess != secretNumber)
                 {
-                    std::cout << "\nYou Lost " << randPlayer << " !" << std::endl;
+                    std::cout << "\nYou Lost " << guessPlayer << " !" << std::endl;
                     std::cout << "Correct Number: " << secretNumber << std::endl;
                     losses++;
 
@@ -182,6 +182,14 @@ class NumberGuessGame {
                 std::cout << std::endl;
 
                 totalGames++;
+
+                // Scoreboard >>>
+                std::cout << "\n<<< Scoreboard >>>";
+                std::cout << "\n+----------------+";
+                std::cout << "\n|>>> Games: " << totalGames;
+                std::cout << "\n|>>> Wins: " << wins;
+                std::cout << "\n|>>> Losses: " << losses;
+                std::cout << "\n+----------------+";
             } while (play_again == 'y' || play_again == 'Y');
         }
 

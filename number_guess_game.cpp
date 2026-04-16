@@ -144,10 +144,10 @@ class NumberGuessGame {
                     attempts++;
 
                     if (guess > secretNumber)
-                        std::cout << guessPlayer << "Too High " << std::endl;
+                        std::cout << guessPlayer + ", Too High" << std::endl;
 
                     else if (guess < secretNumber)
-                        std::cout << guessPlayer << "Too Low " << std::endl;
+                        std::cout << guessPlayer + ", Too Low" << std::endl;
 
                     else
                     {
@@ -156,27 +156,35 @@ class NumberGuessGame {
                         std::cout << "Attempts: " << attempts << std::endl;
                         std::cout << "Remaining attempts: " << (Max_attempts - attempts) << std::endl;
 
-                        if (playerTurn == 1)
-                            std::cout << std::endl << "What s shame " << player1Name << ". \nYou failed to hide the number.";
+                        if (mode == 1)
+                            std::cout << "\nYesss, You beated the Computer";
                         else
-                            std::cout << std::endl << "What s shame " << player2Name << ". \nYou failed to hide the number.";
+                        {
+                            if (playerTurn == 1)
+                                std::cout << "\nWhat s shame " << player1Name << ". \nYou failed to hide the number.";
+                            else
+                                std::cout << "\nWhat s shame " << player2Name << ". \nYou failed to hide the number.";
+                        }
                     }
                 }
                 
                 //...
                 if (attempts == Max_attempts && guess != secretNumber)
                 {
-                    std::cout << "\nYou Lost " << guessPlayer << " !" << std::endl;
-                    std::cout << "Correct Number: " << secretNumber << std::endl;
+                    std::cout << "\nYou Lost " << guessPlayer << " ! Shame On You." << std::endl;
+                    std::cout << "Correct number was: " << secretNumber << std::endl;
                     losses++;
 
-                    if (playerTurn == 1)
-                            std::cout << std::endl << "Ha Ha 😂 " << player1Name << ". Wins.";
-                    else
-                        std::cout << std::endl << "Ha Ha 😂 " << player2Name << ". Wins.";
+                    if (mode == 2)
+                    {
+                        if (playerTurn == 1)
+                            std::cout << "\nWhat s shame " << player1Name << ". \nYou failed to hide the number.";
+                        else
+                            std::cout << "\nWhat s shame " << player2Name << ". \nYou failed to hide the number.";
+                    }
                 }
 
-                std::cout << std::endl << randPlayer << ", Do You Wanna Play Again? (y/n): ";
+                std::cout << std::endl << guessPlayer << ", Do You Wanna Play Again? (y/n): ";
                 std::cin >> play_again;
 
                 std::cout << std::endl;
@@ -184,11 +192,11 @@ class NumberGuessGame {
                 totalGames++;
 
                 // Scoreboard >>>
-                std::cout << "\n<<< Scoreboard >>>";
+                std::cout << "\n\n<<< Scoreboard >>>";
                 std::cout << "\n+----------------+";
-                std::cout << "\n|>>> Games: " << totalGames;
-                std::cout << "\n|>>> Wins: " << wins;
-                std::cout << "\n|>>> Losses: " << losses;
+                std::cout << "\n| >> Games: " << totalGames;
+                std::cout << "\n| >> Wins: " << wins;
+                std::cout << "\n| >> Losses: " << losses;
                 std::cout << "\n+----------------+";
             } while (play_again == 'y' || play_again == 'Y');
         }

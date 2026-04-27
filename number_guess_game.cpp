@@ -96,7 +96,7 @@ class NumberGuessGame {
                     }
                         
                     else {
-                        setterName = player2Name;
+                        setterName = "Computer";
                         guesserName = player1Name;
                         std::cout << "\nNow " << setterName << " will set the Secret Number.";
                     } 
@@ -174,7 +174,9 @@ class NumberGuessGame {
                         std::cout << "Attempts: " << attempts << std::endl;
                         std::cout << "Remaining attempts: " << (Max_attempts - attempts) << std::endl;
 
-                       // if (mode == 1)
+                        if (mode == 1) std::cout << "\nYes Yes Yes, You beated the Computer";
+                        if (mode == 2) std::cout << "\nWhat a shame " << setterName << ", you faled to hide the number";
+                        
                         std::cout << "\nYesss, You beated the Computer";
                         std::cout << "\nHa Ha, You are lost " << setterName << ".";
 

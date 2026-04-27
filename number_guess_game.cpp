@@ -176,7 +176,7 @@ class NumberGuessGame {
 
                         if (mode == 1) std::cout << "\nYes Yes Yes, You beated the Computer";
                         if (mode == 2) std::cout << "\nWhat a shame " << setterName << ", you faled to hide the number";
-                        
+
                         std::cout << "\nYesss, You beated the Computer";
                         std::cout << "\nHa Ha, You are lost " << setterName << ".";
 
@@ -197,7 +197,7 @@ class NumberGuessGame {
                     std::cout << "Correct number was: " << secretNumber << std::endl;
                     losses++;
 
-                    std::cout << "\nHa Ha " << setterName << "Wins.";
+                    std::cout << "\nHa Ha " << setterName << " Wins.";
 
                     // if (mode == 2)
                     // {

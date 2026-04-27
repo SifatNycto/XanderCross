@@ -20,9 +20,6 @@ class NumberGuessGame {
         std::string player1Name;
         std::string player2Name;
 
-        //std::string randPlayer; //
-        //std::string guessPlayer; //
-
         std::string setterName;
         std::string guesserName;
 
@@ -96,7 +93,7 @@ class NumberGuessGame {
                     }
                         
                     else {
-                        setterName = "Computer";
+                        setterName = player2Name;
                         guesserName = player1Name;
                         std::cout << "\nNow " << setterName << " will set the Secret Number.";
                     } 
@@ -121,18 +118,11 @@ class NumberGuessGame {
                     
                     std::cout << std::endl << "Enter your name: ";
                     std::cin >> player1Name;
-                    setterName = player1Name;
+                    guesserName = player1Name;
+                    setterName = "Computer";
                 }
 
-                //..................
-                // if (mode == 2) {
-                //     if (setterName == player1Name) guessPlayer = player2Name;
-                //     else guessPlayer = player1Name;
-                // }
-                // else {
-                //     guessPlayer = player1Name;
-                // }
-
+              
 
                 std::cout << "\n" << guesserName << ", Guess Between " << minRange << " to " << maxRange << std::endl;
 
@@ -151,6 +141,11 @@ class NumberGuessGame {
                     else {
                         try {
                             guess = stoi(input);
+                            if (!(guess >= minRange && guess <= maxRange)) {
+                                std::cout << "\nPlease enter a number between " << minRange << " and " << maxRange << std::endl;
+                                continue;
+                            }
+                                
                         }
                         catch (...) {
                             std::cout << "Invalid input! Please enter a number" << std::endl;
@@ -169,43 +164,29 @@ class NumberGuessGame {
 
                     else
                     {
-                        std::cout << "Correct! " << guesserName << " You guessed correct number" << std::endl;
+                        std::cout << "Correct! " << guesserName << ", You guessed correctly." << std::endl;
                         wins++;
                         std::cout << "Attempts: " << attempts << std::endl;
                         std::cout << "Remaining attempts: " << (Max_attempts - attempts) << std::endl;
 
-                        if (mode == 1) std::cout << "\nYes Yes Yes, You beated the Computer";
-                        if (mode == 2) std::cout << "\nWhat a shame " << setterName << ", you faled to hide the number";
-
-                        std::cout << "\nYesss, You beated the Computer";
-                        std::cout << "\nHa Ha, You are lost " << setterName << ".";
-
-                        // else
-                        // {
-                        //     if (playerTurn == 1)
-                        //         std::cout << "\nWhat a shame " << player1Name << ". \nYou failed to hide the number.";
-                        //     else
-                        //         std::cout << "\nWhat a shame " << player2Name << ". \nYou failed to hide the number.";
-                        // }
+                        if (mode == 1)
+                            std::cout << "\nYou beat the computer!";
+                        else 
+                            std::cout << "\nWhat a shame, " << setterName << ". You failed to hide the number";
                     }
                 }
                 
                 //...
                 if (attempts == Max_attempts && guess != secretNumber)
                 {
-                    std::cout << "\nYou Lost " << guesserName << " ! Shame On You." << std::endl;
+                    std::cout << "\n" << guesserName << ", You lost!" << std::endl;
                     std::cout << "Correct number was: " << secretNumber << std::endl;
                     losses++;
 
-                    std::cout << "\nHa Ha " << setterName << " Wins.";
-
-                    // if (mode == 2)
-                    // {
-                    //     if (playerTurn == 1)
-                    //         std::cout << "\nHa Ha " << player1Name << ". \nYou failed to hide the number.";
-                    //     else
-                    //         std::cout << "\nHa Ha " << player2Name << ". \nYou failed to hide the number.";
-                    // }
+                    if (mode == 1)
+                        std::cout << "\nComputer Wins!";
+                    else
+                        std::cout << "\n" << setterName << " Wins!";
                 }
 
                 std::cout << std::endl << guesserName << ", Do You Wanna Play Again? (y/n): ";

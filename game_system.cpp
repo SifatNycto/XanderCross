@@ -375,9 +375,9 @@ class RockPaperScissor : public GameSys {
 
 int main()
 {
+    
 std::cout << BOLD << BRIGHT_MAGENTA
-          << "\n               >>> WELCOME TO <<<"
-          << RESET;
+          << "\n                       >>> WELCOME TO <<<" << RESET;
 
 std::cout << BOLD << BRIGHT_CYAN;
 

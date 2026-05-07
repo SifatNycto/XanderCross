@@ -68,10 +68,6 @@ XanderCross/
 │
 ├── rock_paper_scissor.cpp   # Rock Paper Scissor source
 │
-├── ngg.exe                  # Compiled Number Guess Game
-├── rps.exe                  # Compiled Rock Paper Scissor
-├── gs.exe                   # Compiled Game System
-│
 ├── .gitignore
 │
 └── README.md
@@ -128,5 +124,3 @@ GitHub: `SifatNycto`
 
 XanderCross is more than a beginner project.  
 It is a growing terminal-based mini game hub designed to strengthen OOP, logic building, and software architecture skills step by step.
-
-> "Only I Can Change My Life, No One Can Do It For Me."

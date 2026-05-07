@@ -363,6 +363,7 @@ int main()
     std::cout << std::endl;
 
     int choice;
+    std::cout << "\nEnter your choice here (1/2/3): ";
     std::cin >> choice;
 
     NumberGuessGame ngg;

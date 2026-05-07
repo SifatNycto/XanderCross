@@ -4,6 +4,31 @@
 #include <cctype>
 #include <ctime>
 
+// For Colors >>>
+// Normal Colors...
+const std::string RED     = "\033[31m";
+const std::string GREEN   = "\033[32m";
+const std::string YELLOW  = "\033[33m";
+const std::string BLUE    = "\033[34m";
+const std::string MAGENTA = "\033[35m";
+const std::string CYAN    = "\033[36m";
+
+// Bright Colors...
+const std::string BRIGHT_RED     = "\033[91m";
+const std::string BRIGHT_GREEN   = "\033[92m";
+const std::string BRIGHT_YELLOW  = "\033[93m";
+const std::string BRIGHT_BLUE    = "\033[94m";
+const std::string BRIGHT_MAGENTA = "\033[95m";
+const std::string BRIGHT_CYAN    = "\033[96m";
+const std::string BRIGHT_WHITE    = "\033[97m";
+
+// For Reset >>>
+const std::string RESET = "\033[0m";
+
+// For Styles >>>
+const std::string BOLD = "\033[1m";
+
+// Class starts.......................
 class GameSys {
     public:
 
@@ -349,16 +374,50 @@ class RockPaperScissor : public GameSys {
 
 
 int main()
-{ 
-    std::cout << "\n._____________________.";
-    std::cout << "\n+---------------------+";
-    std::cout << "\n|      WELCOME TO     |";
-    std::cout << "\n|       GAME HUB      |";
-    std::cout << "\n+---------------------+";
+{
+std::cout << BOLD << BRIGHT_MAGENTA
+          << "\n               >>> WELCOME TO <<<"
+          << RESET;
 
-    std::cout << "\n1. Number Guess Game";
-    std::cout << "\n2. Rock Paper Scissor";
-    std::cout << "\n3. Exit";
+std::cout << BOLD << BRIGHT_CYAN;
+
+    std::cout << R"(
+
+      ____    _    __  __  _____    _   _   _   _   ____   
+     / ___|  / \  |  \/  || ____|  | | | | | | | | | __ )  
+    | |  _  / _ \ | |\/| ||  _|    | |_| | | | | | |  _ \
+    | |_| |/ ___ \| |  | || |___   |  _  | | |_| | | |_) | 
+     \____/_/   \_\_|  |_||_____|  |_| |_|  \___/  |____/  
+
+    )";
+
+std::cout << RESET;
+
+std::cout << BOLD << BRIGHT_CYAN
+          << "\n================================================"
+          << RESET;
+
+std::cout << BOLD << BRIGHT_YELLOW
+          << "\n [1] Number Guess Game"
+          << RESET;
+
+std::cout << BOLD << BRIGHT_BLUE
+          << "\n [2] Rock Paper Scissor"
+          << RESET;
+
+std::cout << BOLD << BRIGHT_RED
+          << "\n [3] Exit"
+          << RESET;
+
+std::cout << BOLD << BRIGHT_CYAN
+          << "\n================================================"
+          << RESET;
+
+std::cout << BOLD << BRIGHT_WHITE
+          << "\nEnter your choice here (1/2/3): "
+          << RESET;
+
+
 
     std::cout << std::endl;
 

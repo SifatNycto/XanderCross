@@ -3,6 +3,14 @@
 #include <string>
 #include <ctime>
 
+const std::string BRIGHT_RED     = "\033[91m";
+const std::string BRIGHT_GREEN   = "\033[92m";
+const std::string BRIGHT_YELLOW  = "\033[93m";
+const std::string BRIGHT_MAGENTA = "\033[95m";
+const std::string BRIGHT_CYAN    = "\033[96m";
+const std::string RESET = "\033[0m";
+const std::string BOLD = "\033[1m";
+
 
 class NumberGuessGame {
     private:
@@ -29,9 +37,9 @@ class NumberGuessGame {
         }
         
         void header_ngg() {
-            std::cout << "\n+--------------------------------------+";
-            std::cout << "\n|>>>      NUMBER GUESSING GAME      <<<|";
-            std::cout << "\n+--------------------------------------+";
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+--------------------------------------+" << RESET;
+            std::cout << BOLD << BRIGHT_GREEN   << "\n| >>>     NUMBER GUESSING GAME     <<< |" << RESET;
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+--------------------------------------+" << RESET;
             std::cout << std::endl;
         }
 
@@ -41,6 +49,7 @@ class NumberGuessGame {
             std::cout << "Modes: " << std::endl;
             std::cout << "1. Play with computer" << std::endl;
             std::cout << "2. Play with friend" << std::endl;
+            std::cout << "3. Exit" << std::endl;
             std::cout << "Choose Mode (1/2): ";
             std::cin >> Mode;
 
@@ -111,6 +120,9 @@ class NumberGuessGame {
                     // calling clear screen..............
                     clear_screen();
                 }
+                
+                else if (mode == 3) exit(0);
+
                 else {
                     std::cout << "Invalid mode choice!\nMode set to default" << std::endl;
                     difficulty(&choice, &minRange, &maxRange, &Max_attempts);
@@ -197,12 +209,13 @@ class NumberGuessGame {
                 totalGames++;
 
                 // Scoreboard >>>
-                std::cout << "\n\n<<< Scoreboard >>>";
-                std::cout << "\n+----------------+";
-                std::cout << "\n| >> Games: " << totalGames;
-                std::cout << "\n| >> Wins: " << wins;
-                std::cout << "\n| >> Losses: " << losses;
-                std::cout << "\n+----------------+";
+                std::cout << BOLD << BRIGHT_MAGENTA << "\n<<< SCOREBOARD >>>" << RESET;
+                std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
+                std::cout << BOLD << BRIGHT_YELLOW  << "\n| Total Games : " << totalGames << RESET;
+                std::cout << BOLD << BRIGHT_GREEN   << "\n| Wins        : " << wins << RESET;
+                std::cout << BOLD << BRIGHT_RED     << "\n| Losses      : " << losses << RESET;
+                std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
+
             } while (play_again == 'y' || play_again == 'Y');
         }
 

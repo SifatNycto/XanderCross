@@ -61,9 +61,9 @@ class NumberGuessGame : public GameSys {
         }
         
         void header_ngg() {
-            std::cout << "\n+--------------------------------------+";
-            std::cout << "\n|>>>      NUMBER GUESSING GAME      <<<|";
-            std::cout << "\n+--------------------------------------+";
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+--------------------------------------+" << RESET;
+            std::cout << BOLD << BRIGHT_GREEN   << "\n| >>>     NUMBER GUESSING GAME     <<< |" << RESET;
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+--------------------------------------+" << RESET;
             std::cout << std::endl;
         }
 
@@ -73,12 +73,13 @@ class NumberGuessGame : public GameSys {
             std::cout << "Modes: " << std::endl;
             std::cout << "1. Play with computer" << std::endl;
             std::cout << "2. Play with friend" << std::endl;
+            std::cout << "3. Exit" << std::endl;
             std::cout << "Choose Mode (1/2): ";
             std::cin >> Mode;
 
             return Mode;
         }
-        void play() override {
+        void play() {
             char play_again;
             do
             {
@@ -143,6 +144,9 @@ class NumberGuessGame : public GameSys {
                     // calling clear screen..............
                     clear_screen();
                 }
+                
+                else if (mode == 3) exit(0);
+
                 else {
                     std::cout << "Invalid mode choice!\nMode set to default" << std::endl;
                     difficulty(&choice, &minRange, &maxRange, &Max_attempts);
@@ -229,12 +233,13 @@ class NumberGuessGame : public GameSys {
                 totalGames++;
 
                 // Scoreboard >>>
-                std::cout << "\n\n<<< Scoreboard >>>";
-                std::cout << "\n+----------------+";
-                std::cout << "\n| >> Games: " << totalGames;
-                std::cout << "\n| >> Wins: " << wins;
-                std::cout << "\n| >> Losses: " << losses;
-                std::cout << "\n+----------------+";
+                std::cout << BOLD << BRIGHT_MAGENTA << "\n<<< SCOREBOARD >>>" << RESET;
+                std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
+                std::cout << BOLD << BRIGHT_YELLOW  << "\n| Total Games : " << totalGames << RESET;
+                std::cout << BOLD << BRIGHT_GREEN   << "\n| Wins        : " << wins << RESET;
+                std::cout << BOLD << BRIGHT_RED     << "\n| Losses      : " << losses << RESET;
+                std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
+
             } while (play_again == 'y' || play_again == 'Y');
         }
 
@@ -272,12 +277,22 @@ class RockPaperScissor : public GameSys {
     private:
         char user_choice;
         std::string computer = "";
+        int totalMatches = 0;
+        int wins = 0;
+        int losses = 0;
+        int ties = 0;
+
     public:
         RockPaperScissor() {
             srand(time(NULL));
         }
 
         void play() {
+            
+            std::cout << BOLD << BRIGHT_BLUE    << "\n========================================" << RESET;
+            std::cout << BOLD << BRIGHT_YELLOW  << "\n         ROCK PAPER SCISSOR" << RESET;
+            std::cout << BOLD << BRIGHT_BLUE    << "\n========================================" << RESET << std::endl;
+            
             char play_again;
             do 
             {
@@ -311,7 +326,10 @@ class RockPaperScissor : public GameSys {
                 std::cout << "Computer choice: " << computer << std::endl;
                 std::cout << std::endl;
 
+
                 decide_winner();
+                
+                totalMatches++;
 
                 std::cout << std::endl;
                 std::cout << "Play Again? (y/n): ";
@@ -319,6 +337,8 @@ class RockPaperScissor : public GameSys {
                 std::cout << std::endl;
 
             } while (play_again == 'y' || play_again == 'Y');
+
+            scoreBoard();
         }
 
         // ............
@@ -329,49 +349,68 @@ class RockPaperScissor : public GameSys {
                             if (computer == "rock")
                             {
                                 std::cout << "Oops... It's a tie!";
+                                ties++;
                             }
                             else if (computer == "paper")
                             {
                                 std::cout << "Ha Ha Ha, Shame on you\nYou lose!";
+                                losses++;
                             }
                             else
                             {
                                 std::cout << "Congratulations.... You win!";
+                                wins++;
                             }
                             break;
                 case 'p':
                             if (computer == "rock")
                             {
                                 std::cout << "Congratulations.... You win!";
+                                wins++;
                             }
                             else if (computer == "paper")
                             {
                                 std::cout << "Oops... It's a tie!";
+                                ties++;
                             }
                             else
                             {
                                 std::cout << "Ha Ha Ha, Shame on you\nYou lose!";
+                                losses++;
                             }
                             break;
                 case 's':
                             if (computer == "rock")
                             {
                                 std::cout << "Ha Ha Ha, Shame on you\nYou lose!";
+                                losses++;
                             }
                             else if (computer == "paper")
                             {
                                 std::cout << "Congratulations.... You win!";
+                                wins++;
                             }
                             else
                             {
                                 std::cout << "Oops... It's a tie!";
+                                ties++;
                             }
                             break;
 
             }
         }
-};
 
+        void scoreBoard()
+        {
+            std::cout << BOLD << BRIGHT_MAGENTA << "\n<<< SCOREBOARD >>>" << RESET;
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+----------------+" << RESET;
+            std::cout                   << "\n| Matches   : " << totalMatches;
+            std::cout << BOLD << BRIGHT_GREEN   << "\n| Wins      : " << wins << RESET;
+            std::cout << BOLD << BRIGHT_RED     << "\n| Losses    : " << losses << RESET;
+            std::cout << BOLD << BRIGHT_YELLOW  << "\n| Ties      : " << ties << RESET;
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+----------------+" << RESET;
+        }
+};
 
 int main()
 {

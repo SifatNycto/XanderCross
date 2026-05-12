@@ -32,6 +32,7 @@ const std::string RESET = "\033[0m";
 // For Styles >>>
 const std::string BOLD = "\033[1m";
 
+
 // Class starts.......................
 class GameHub {
     public:
@@ -65,9 +66,9 @@ class NumberGuessGame : public GameHub {
         }
         
         void header_ngg() {
-            std::cout << BOLD << BRIGHT_CYAN    << "\n+--------------------------------------+" << RESET;
-            std::cout << BOLD << BRIGHT_GREEN   << "\n| >>>     NUMBER GUESSING GAME     <<< |" << RESET;
-            std::cout << BOLD << BRIGHT_CYAN    << "\n+--------------------------------------+" << RESET;
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+----------------------------------+" << RESET;
+            std::cout << BOLD << BRIGHT_GREEN   << "\n| >>>   NUMBER GUESSING GAME   <<< |" << RESET;
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+----------------------------------+" << RESET;
             std::cout << std::endl;
         }
 
@@ -90,8 +91,6 @@ class NumberGuessGame : public GameHub {
                 // NGG Game Header
                 header_ngg();
 
-                
-
                 int choice;
                 int Max_attempts;
                 int mode;
@@ -107,7 +106,6 @@ class NumberGuessGame : public GameHub {
                     std::cin >> player1Name;
                     guesserName = player1Name;
 
-                    //randPlayer = player1Name;
 
                     difficulty(&choice, &minRange, &maxRange, &Max_attempts);
                     secretNumber = rand() % (maxRange - minRange + 1) + minRange;
@@ -121,7 +119,6 @@ class NumberGuessGame : public GameHub {
                     std::cin >> player2Name;
 
                     playerTurn = (rand() % 2) + 1;
-                    // std::string randPlayer;
 
                     if (playerTurn == 1) {
                         setterName = player1Name;
@@ -421,89 +418,73 @@ class RockPaperScissor : public GameHub {
 
 int main()
 {
-    std::cout << BOLD << BRIGHT_GREEN << "\nInitializing Game Engine";
-    for (int i = 0; i < 5; i++)
-        std::this_thread::sleep_for(500ms), std::cout << ".";
-
-    std::cout << "\nLoading Game Hub";
-    for(int i = 0; i < 5; i++)
-        std::this_thread::sleep_for(700ms), std::cout << ".";
-
-    std::cout << RESET;
-
-    system("cls");
-
-    std::cout << BOLD << BRIGHT_MAGENTA;
-
-    std::cout << R"(
-
-      ____    _    __  __  _____    _   _   _   _   ____   
-     / ___|  / \  |  \/  || ____|  | | | | | | | | | __ )  
-    | |  _  / _ \ | |\/| ||  _|    | |_| | | | | | |  _ \
-    | |_| |/ ___ \| |  | || |___   |  _  | | |_| | | |_) | 
-     \____/_/   \_\_|  |_||_____|  |_| |_|  \___/  |____/  
-
-    )";
-
-std::cout << RESET;
-
-std::cout << BOLD << BRIGHT_CYAN
-          << "\n================================================"
-          << RESET;
-
-std::cout << BOLD << BRIGHT_YELLOW
-          << "\n [1] Number Guess Game"
-          << RESET;
-
-std::cout << BOLD << BRIGHT_BLUE
-          << "\n [2] Rock Paper Scissor"
-          << RESET;
-
-std::cout << BOLD << BRIGHT_RED
-          << "\n [3] Exit"
-          << RESET;
-
-std::cout << BOLD << BRIGHT_CYAN
-          << "\n================================================"
-          << RESET;
-
-
-
-    std::cout << std::endl;
-
-    int choice;
-    std::cout << BOLD << BRIGHT_WHITE << "\nEnter your choice here (1/2/3): " << RESET;
-    std::cin >> choice;
-
-    NumberGuessGame ngg;
-    RockPaperScissor rps;
-
-    if(choice == 1)
-    {
-
-
-        ngg.play();
-    }
-    
-    else if(choice == 2) rps.play();
-
-    else if(choice == 3)
-    {
-        std::cout << BOLD << BRIGHT_GREEN<< "\nExiting Game Hub";
+    std::cout << BOLD << BRIGHT_GREEN << "\nLoading Game Hub";
         for(int i = 0; i < 5; i++)
-        {
             std::this_thread::sleep_for(700ms), std::cout << ".";
-        }
+
         std::cout << RESET;
 
-        exit(0);
-    }
-
-    else
+    while(true)
     {
-        std::cout << RED << "\nInvalid choice!" << RESET;
-        exit(0);
-    }
+        
+        system("cls");
 
+        std::cout << BOLD << BRIGHT_MAGENTA;
+
+        std::cout << R"(
+
+          ____    _    __  __  _____    _   _   _   _   ____   
+         / ___|  / \  |  \/  || ____|  | | | | | | | | | __ )  
+        | |  _  / _ \ | |\/| ||  _|    | |_| | | | | | |  _ \
+        | |_| |/ ___ \| |  | || |___   |  _  | | |_| | | |_) | 
+         \____/_/   \_\_|  |_||_____|  |_| |_|  \___/  |____/  
+
+        )";
+
+        std::cout << RESET;
+
+        std::cout << BOLD << BRIGHT_CYAN    << "\n>>================================<<" << RESET;
+        std::cout << BOLD << BRIGHT_YELLOW  << "\n [1] Number Guess Game" << RESET;
+        std::cout << BOLD << BRIGHT_BLUE    << "\n [2] Rock Paper Scissor" << RESET;
+        std::cout << BOLD << BRIGHT_RED     << "\n [3] Exit" << RESET;
+        std::cout << BOLD << BRIGHT_CYAN    << "\n>>================================<<" << RESET;
+
+        std::cout << std::endl;
+
+        int choice;
+        std::cout << BOLD << BRIGHT_WHITE << "\nEnter your choice here (1/2/3): " << RESET;
+        std::cin >> choice;
+
+        NumberGuessGame ngg;
+        RockPaperScissor rps;
+
+        if(choice == 1)
+        {
+
+
+            ngg.play();
+        }
+        
+        else if(choice == 2) rps.play();
+
+        else if(choice == 3)
+        {
+            std::cout << BOLD << BRIGHT_GREEN<< "\nExiting Game Hub";
+            for(int i = 0; i < 5; i++)
+            {
+                std::this_thread::sleep_for(700ms), std::cout << ".";
+            }
+            std::cout << RESET;
+
+            exit(0);
+        }
+
+        else
+        {
+            std::cout << RED << "\nInvalid choice!" << RESET;
+            exit(0);
+        }
+
+    } // close of while
     return 0;
 }

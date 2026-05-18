@@ -80,7 +80,17 @@ class NumberGuessGame : public GameHub {
             std::cout << "2. Play with friend" << std::endl;
             std::cout << "3. Exit" << std::endl;
             std::cout << "Choose Mode (1/2): ";
-            std::cin >> Mode;
+            
+            if (!(std::cin >> Mode))
+            {
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+
+                std::cout << RED << BRIGHT_RED << "\nInvalid input!\nNumbers only.\n" << RESET;
+                
+                std::this_thread::sleep_for(2s);
+                return 0;
+            }
 
             return Mode;
         }
@@ -146,7 +156,7 @@ class NumberGuessGame : public GameHub {
                     clear_screen();
                 }
                 
-                else if (mode == 3) exit(0);
+                else if (mode == 3) return;
 
                 else {
                     std::cout << "Invalid mode choice!\nMode set to default" << std::endl;
@@ -173,8 +183,14 @@ class NumberGuessGame : public GameHub {
                     std::cout << "Enter your guess: ";
                     std::cin >> input;
 
-                    if (input == "q") exit(0);
-                    else if (input == "h") break;
+                    if (input == "q")
+                    {
+                        std::cout << BOLD << BRIGHT_YELLOW << "\nReturning to Main Menu..." << RESET;
+                        
+                        std::this_thread::sleep_for(2s);
+                        return;
+                    }
+            
                     else {
                         try {
                             guess = stoi(input);
@@ -205,6 +221,7 @@ class NumberGuessGame : public GameHub {
                         wins++;
                         std::cout << "Attempts: " << attempts << std::endl;
                         std::cout << "Remaining attempts: " << (Max_attempts - attempts) << std::endl;
+                        totalGames++;
 
                         if (mode == 1)
                             std::cout << "\nYou beat the computer!";
@@ -219,6 +236,7 @@ class NumberGuessGame : public GameHub {
                     std::cout << "\n" << guesserName << ", You lost!" << std::endl;
                     std::cout << "Correct number was: " << secretNumber << std::endl;
                     losses++;
+                    totalGames++;
 
                     if (mode == 1)
                         std::cout << "\nComputer Wins!";
@@ -231,12 +249,10 @@ class NumberGuessGame : public GameHub {
 
                 std::cout << std::endl;
 
-                totalGames++;
-
-                // Scoreboard >>>
-                scoreBoard();
-
             } while (play_again == 'y' || play_again == 'Y');
+
+            // Scoreboard >>>
+            scoreBoard();
         }
 
         // difficulty setting method.........
@@ -271,7 +287,7 @@ class NumberGuessGame : public GameHub {
             std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
 
             std::cout << "\n\nPress Enter to return to Main Menu...";
-            std::cin.ignore();
+            std::cin.ignore(1000, '\n');
             std::cin.get();
         }
 
@@ -422,14 +438,14 @@ class RockPaperScissor : public GameHub {
 
             std::cout << BOLD << BRIGHT_MAGENTA << "\n<<< SCOREBOARD >>>" << RESET;
             std::cout << BOLD << BRIGHT_CYAN    << "\n+----------------+" << RESET;
-            std::cout                   << "\n| Matches   : " << totalMatches;
+            std::cout << BOLD << BRIGHT_WHITE   << "\n| Matches   : " << totalMatches << RESET;
             std::cout << BOLD << BRIGHT_GREEN   << "\n| Wins      : " << wins << RESET;
             std::cout << BOLD << BRIGHT_RED     << "\n| Losses    : " << losses << RESET;
             std::cout << BOLD << BRIGHT_YELLOW  << "\n| Ties      : " << ties << RESET;
             std::cout << BOLD << BRIGHT_CYAN    << "\n+----------------+" << RESET;
 
             std::cout << "\n\nPress Enter to return to Main Menu...";
-            std::cin.ignore();
+            std::cin.ignore(1000, '\n');
             std::cin.get();
         }
 };
@@ -478,15 +494,19 @@ int main()
 
         int choice;
         std::cout << BOLD << BRIGHT_WHITE << "\nEnter your choice here (1/2/3): " << RESET;
-        std::cin >> choice;
-
-
-        if(choice == 1)
+        if (!(std::cin >> choice))
         {
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
 
+            std::cout << BOLD << BRIGHT_RED << "\nInvalid input!\nPlease enter numbers only.\n" << RESET;
 
-            ngg.play();
+            std::this_thread::sleep_for(2s);
+            continue;
         }
+
+
+        if(choice == 1) ngg.play();
         
         else if(choice == 2) rps.play();
 
@@ -499,13 +519,15 @@ int main()
             }
             std::cout << RESET;
 
-            exit(0);
+            break;
         }
 
         else
         {
-            std::cout << RED << "\nInvalid choice!" << RESET;
-            exit(0);
+            std::cout << BOLD << BRIGHT_RED << "\nInvalid choice!" << RESET;
+
+            std::this_thread::sleep_for(2s);
+            continue;
         }
 
     } // close of while

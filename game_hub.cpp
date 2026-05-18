@@ -39,6 +39,8 @@ class GameHub {
 
         virtual void play() = 0;
 
+        virtual ~GameHub() = default;
+
 };
 
 class NumberGuessGame : public GameHub {
@@ -94,7 +96,7 @@ class NumberGuessGame : public GameHub {
 
             return Mode;
         }
-        void play() {
+        void play() override {
             char play_again;
             do
             {
@@ -317,7 +319,7 @@ class RockPaperScissor : public GameHub {
             
         }
 
-        void play() {
+        void play() override {
             
             std::cout << BOLD << BRIGHT_BLUE    << "\n========================================" << RESET;
             std::cout << BOLD << BRIGHT_YELLOW  << "\n         ROCK PAPER SCISSOR" << RESET;
@@ -463,10 +465,12 @@ int main()
 
     NumberGuessGame ngg;
     RockPaperScissor rps;
+    GameHub *gh = nullptr;
 
 
     while(true)
     {
+        gh = nullptr;
         
         system("cls");
 
@@ -506,16 +510,18 @@ int main()
         }
 
 
-        if(choice == 1) ngg.play();
+    
+        if(choice == 1) gh = &ngg;
         
-        else if(choice == 2) rps.play();
+        else if(choice == 2) gh = &rps;
 
         else if(choice == 3)
         {
             std::cout << BOLD << BRIGHT_GREEN<< "\nExiting Game Hub";
             for(int i = 0; i < 5; i++)
             {
-                std::this_thread::sleep_for(700ms), std::cout << ".";
+                std::this_thread::sleep_for(700ms);
+                std::cout << ".";
             }
             std::cout << RESET;
 
@@ -529,6 +535,8 @@ int main()
             std::this_thread::sleep_for(2s);
             continue;
         }
+
+        if (gh != nullptr) gh->play();
 
     } // close of while
     return 0;

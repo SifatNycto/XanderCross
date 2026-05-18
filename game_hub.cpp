@@ -62,7 +62,7 @@ class NumberGuessGame : public GameHub {
 
     public:
         NumberGuessGame() {
-            srand(time(NULL));
+            
         }
         
         void header_ngg() {
@@ -234,15 +234,7 @@ class NumberGuessGame : public GameHub {
                 totalGames++;
 
                 // Scoreboard >>>
-                std::cout << "Loading Scoreboard";
-                for (int i = 0; i < 3; i++) std::this_thread::sleep_for(500ms), std::cout << ".";
-
-                std::cout << BOLD << BRIGHT_MAGENTA << "\n<<< SCOREBOARD >>>" << RESET;
-                std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
-                std::cout << BOLD << BRIGHT_YELLOW  << "\n| Total Games : " << totalGames << RESET;
-                std::cout << BOLD << BRIGHT_GREEN   << "\n| Wins        : " << wins << RESET;
-                std::cout << BOLD << BRIGHT_RED     << "\n| Losses      : " << losses << RESET;
-                std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
+                scoreBoard();
 
             } while (play_again == 'y' || play_again == 'Y');
         }
@@ -263,6 +255,24 @@ class NumberGuessGame : public GameHub {
                 std::cout << "Invalid choice input!\nChoice set to default" << std::endl;
                 *minRange = 1, *maxRange = 100, *Max_attempts = 7;
             }
+        }
+
+        void scoreBoard()
+        {
+            std::cout << BOLD << BRIGHT_GREEN << "Loading Scoreboard";
+            for (int i = 0; i < 3; i++) std::this_thread::sleep_for(500ms), std::cout << ".";
+            std::cout << RESET;
+
+            std::cout << BOLD << BRIGHT_MAGENTA << "\n<<< SCOREBOARD >>>" << RESET;
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
+            std::cout << BOLD << BRIGHT_YELLOW  << "\n| Total Games : " << totalGames << RESET;
+            std::cout << BOLD << BRIGHT_GREEN   << "\n| Wins        : " << wins << RESET;
+            std::cout << BOLD << BRIGHT_RED     << "\n| Losses      : " << losses << RESET;
+            std::cout << BOLD << BRIGHT_CYAN    << "\n+------------------+" << RESET;
+
+            std::cout << "\n\nPress Enter to return to Main Menu...";
+            std::cin.ignore();
+            std::cin.get();
         }
 
         // for system clear
@@ -288,7 +298,7 @@ class RockPaperScissor : public GameHub {
 
     public:
         RockPaperScissor() {
-            srand(time(NULL));
+            
         }
 
         void play() {
@@ -352,51 +362,51 @@ class RockPaperScissor : public GameHub {
                 case 'r':
                             if (computer == "rock")
                             {
-                                std::cout << "Oops... It's a tie!";
+                                std::cout << BOLD << BRIGHT_CYAN << "Oops... It's a tie!" << RESET;
                                 ties++;
                             }
                             else if (computer == "paper")
                             {
-                                std::cout << "Ha Ha Ha, Shame on you\nYou lose!";
+                                std::cout << BOLD << BRIGHT_RED << "Ha Ha Ha, Shame on you\nYou lose!" << RESET;
                                 losses++;
                             }
                             else
                             {
-                                std::cout << "Congratulations.... You win!";
+                                std::cout << BOLD << BRIGHT_GREEN << "Congratulations.... You win!" << RESET;
                                 wins++;
                             }
                             break;
                 case 'p':
                             if (computer == "rock")
                             {
-                                std::cout << "Congratulations.... You win!";
+                                std::cout << BOLD << BRIGHT_GREEN << "Congratulations.... You win!" << RESET;
                                 wins++;
                             }
                             else if (computer == "paper")
                             {
-                                std::cout << "Oops... It's a tie!";
+                                std::cout << BOLD << BRIGHT_CYAN << "Oops... It's a tie!" << RESET;
                                 ties++;
                             }
                             else
                             {
-                                std::cout << "Ha Ha Ha, Shame on you\nYou lose!";
+                                std::cout << BOLD << BRIGHT_RED << "Ha Ha Ha, Shame on you\nYou lose!" << RESET;
                                 losses++;
                             }
                             break;
                 case 's':
                             if (computer == "rock")
                             {
-                                std::cout << "Ha Ha Ha, Shame on you\nYou lose!";
+                                std::cout << BOLD << BRIGHT_RED << "Ha Ha Ha, Shame on you\nYou lose!" << RESET;
                                 losses++;
                             }
                             else if (computer == "paper")
                             {
-                                std::cout << "Congratulations.... You win!";
+                                std::cout << BOLD << BRIGHT_GREEN << "Congratulations.... You win!" << RESET;
                                 wins++;
                             }
                             else
                             {
-                                std::cout << "Oops... It's a tie!";
+                                std::cout << BOLD << BRIGHT_CYAN << "Oops... It's a tie!" << RESET;
                                 ties++;
                             }
                             break;
@@ -406,6 +416,10 @@ class RockPaperScissor : public GameHub {
 
         void scoreBoard()
         {
+            std::cout << BOLD << BRIGHT_GREEN << "Loading Scoreboard";
+            for (int i = 0; i < 3; i++) std::this_thread::sleep_for(500ms), std::cout << ".";
+            std::cout << RESET;
+
             std::cout << BOLD << BRIGHT_MAGENTA << "\n<<< SCOREBOARD >>>" << RESET;
             std::cout << BOLD << BRIGHT_CYAN    << "\n+----------------+" << RESET;
             std::cout                   << "\n| Matches   : " << totalMatches;
@@ -413,6 +427,10 @@ class RockPaperScissor : public GameHub {
             std::cout << BOLD << BRIGHT_RED     << "\n| Losses    : " << losses << RESET;
             std::cout << BOLD << BRIGHT_YELLOW  << "\n| Ties      : " << ties << RESET;
             std::cout << BOLD << BRIGHT_CYAN    << "\n+----------------+" << RESET;
+
+            std::cout << "\n\nPress Enter to return to Main Menu...";
+            std::cin.ignore();
+            std::cin.get();
         }
 };
 
@@ -423,6 +441,13 @@ int main()
             std::this_thread::sleep_for(700ms), std::cout << ".";
 
         std::cout << RESET;
+
+
+    srand(time(NULL));
+
+    NumberGuessGame ngg;
+    RockPaperScissor rps;
+
 
     while(true)
     {
@@ -455,8 +480,6 @@ int main()
         std::cout << BOLD << BRIGHT_WHITE << "\nEnter your choice here (1/2/3): " << RESET;
         std::cin >> choice;
 
-        NumberGuessGame ngg;
-        RockPaperScissor rps;
 
         if(choice == 1)
         {

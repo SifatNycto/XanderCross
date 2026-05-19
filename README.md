@@ -1,126 +1,138 @@
-# XanderCross 🎮
+# 🎮 XanderCross
 
-A terminal-based mini Game Hub project built using **C++ Object-Oriented Programming (OOP)** concepts.
+XanderCross is a terminal-based mini game hub built with **C++** using core **Object-Oriented Programming (OOP)** concepts.
 
-Currently includes:
-
-- 🎯 Number Guess Game
-- ✊ Rock Paper Scissor
-
-This project is being developed as a learning journey for mastering:
-
-- Classes & Objects
-- Encapsulation
-- Inheritance
-- Abstract Classes
-- Virtual Functions
-- Polymorphism
-- Game Logic Design
-- Terminal UI Design
+The project focuses on clean architecture, runtime polymorphism, input validation, and interactive terminal gameplay.
 
 ---
 
-# 🚀 Features
+# ✨ Features
 
-## 🎯 Number Guess Game
-- Multiple difficulty modes
+- Terminal-based game hub
+- Colorful ANSI terminal UI
+- Runtime polymorphism
+- Abstract base class architecture
+- Input validation system
+- Dynamic scoreboards
+- Replay functionality
+- Modular OOP design
+
+---
+
+# 🎮 Included Games
+
+## 🔢 Number Guess Game
 - Player vs Computer
 - Player vs Friend
-- Random turn selection
-- Attempt limits
+- Multiple difficulty levels
+- Attempt limitation system
 - Score tracking
-- Input validation
-- Dynamic range system
 
----
-
-## ✊ Rock Paper Scissor
-- Classic gameplay
+## ✂️ Rock Paper Scissor
 - Randomized computer moves
-- Input validation
+- Win / Loss / Tie tracking
 - Replay system
-- OOP-based game structure
 
 ---
 
 # 🧠 OOP Concepts Used
 
-| Concept | Usage |
+| Concept | Implementation |
 |---|---|
-| Class & Object | Game systems |
-| Encapsulation | Private variables |
-| Inheritance | Games inherit from GameSys |
-| Abstract Class | Base game template |
-| Virtual Function | Shared game interface |
-| Override | Individual game logic |
-| Polymorphism | Unified play system |
+| Encapsulation | Private data members |
+| Inheritance | Game classes inherit from `GameHub` |
+| Abstraction | Pure virtual `play()` function |
+| Polymorphism | Base class pointer calling derived games |
 
 ---
 
-# 📁 Project Structure
+# 🏗️ Project Structure
 
 ```text
 XanderCross/
 │
-├── game_system.cpp          # Main Game Hub system
-│
-├── number_guess_game.cpp    # Number Guess Game source
-│
-├── rock_paper_scissor.cpp   # Rock Paper Scissor source
-│
-├── .gitignore
-│
-└── README.md
+├── main.cpp
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-# 🎮 Planned Features
+# ⚙️ Technologies Used
 
-- 🔥 Full Game Hub Menu
-- 🔥 File handling for score saving
-- 🔥 Leaderboard system
-- 🔥 Colored terminal UI
-- 🔥 More mini games
-- 🔥 Better AI gameplay
-- 🔥 Modular header/source file architecture
-- 🔥 Advanced OOP improvements
-
----
-
-# 🛠️ Technologies Used
-
-- Language: **C++**
-- Compiler: **g++**
-- IDE: **VS Code**
-- Version Control: **Git & GitHub**
+- C++
+- STL
+- OOP
+- `<thread>`
+- `<chrono>`
+- ANSI Escape Codes
+- Git & GitHub
 
 ---
 
-# ⚡ Compile & Run
+# 🚀 Compile & Run
 
 ## Compile
 
+### Windows
 ```bash
-g++ game_system.cpp -o gs
+g++ main.cpp -o gamehub
 ```
+
+### Linux / macOS
+```bash
+g++ main.cpp -o gamehub -pthread
+```
+
+---
 
 ## Run
 
+### Windows
 ```bash
-./gs
+gamehub
 ```
+
+### Linux / macOS
+```bash
+./gamehub
+```
+
+---
+
+# 📌 Controls
+
+## Number Guess Game
+
+| Input | Action |
+|---|---|
+| Number | Guess number |
+| `q` | Return to main menu |
+
+---
+
+## Rock Paper Scissor
+
+| Input | Action |
+|---|---|
+| `r` | Rock |
+| `p` | Paper |
+| `s` | Scissor |
+
+---
+
+# 📈 Future Improvements
+
+- Tic Tac Toe
+- Snake Game
+- File handling
+- Leaderboard system
+- Improved AI
+- Modular header/source structure
 
 ---
 
 # 👨‍💻 Developer
 
 **Mehedi Hasan Sifat**  
-GitHub: `SifatNycto`
-
----
-
-# 🌌 Project Vision
-
-XanderCross is more than a beginner project.  
-It is a growing terminal-based mini game hub designed to strengthen OOP, logic building, and software architecture skills step by step.
+GitHub: **SifatNycto**

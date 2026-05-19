@@ -51,7 +51,17 @@ The project focuses on clean architecture, runtime polymorphism, input validatio
 ```text
 XanderCross/
 │
-├── main.cpp
+│
+├── game_hub.cpp (Abstract Base Class)
+│      │
+│      ├── NumberGuessGame
+│      │
+│      └── RockPaperScissor
+│
+├── number_guess_game.cpp
+|
+├── rock_paper_scissor.cpp
+|
 ├── README.md
 └── .gitignore
 ```
